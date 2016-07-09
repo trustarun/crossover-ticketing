@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12">
+    <% if flash.present? %>
+      <% flash.each do |name, msg| %>
+        <% unless msg.is_a?(String) == false or msg.strip.blank? %>
+          <div style="text-align: center;font-weight: bold;" class="alert alert-<%= message_type(name) %>">
+            <a class="close" data-dismiss="alert">×</a>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+    <div id="ajax_message_success" style="text-align: center;font-weight: bold;display: none;background-color: #5C8A00;" class="alert">
+      <a class="close" data-dismiss="alert">×</a>
+    </div>
+    <div id="ajax_message_error" style="text-align: center;font-weight: bold;display: none; background-color: #FF0000;" class="alert">
+      <a class="close" data-dismiss="alert">×</a>
+    </div>
+  </div>
+</div>

@@ -6,9 +6,21 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
-</body>
+  <body>
+    <div class="wrapper">
+      <%= render partial: 'layouts/nav'%>
+      <div class="container" >
+        <div class="row" >
+          <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
+            <%= render 'layouts/message' %>
+          </div>
+          <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1" id="content_containers">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <div class="push"></div>
+    </div>
+    <%= render partial: 'layouts/footer'%>
+  </body>
 </html>

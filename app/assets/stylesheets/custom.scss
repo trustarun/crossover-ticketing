@@ -1,0 +1,105 @@
+@import "bootstrap_override";
+
+//sticky footer start
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -4em;
+}
+.footer, .push {
+    height: 4em;
+}
+
+.footer, .push {
+    clear: both;
+}
+//sticky footer end
+
+.brand-color{
+    background-color: $navbar-inverse-bg; 
+} 
+
+#bottom {
+    color: #bdc3c7;
+    padding: 25px 0;
+}
+#bottom h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+#bottom .media-heading {
+    display: block;
+    font-weight: 400;
+}
+
+#footer {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: #bdc3c7;
+}
+#footer a {
+    color: #bdc3c7;
+}
+#footer a:hover {
+    color: #d9534f;
+}
+#footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#footer ul > li {
+    display: inline-block;
+    margin-left: 15px;
+}
+.footer-brand-color {
+    background-color: $footer-brand-color;
+}
+
+.pathology_tests label {
+    margin-bottom: 10px !important;
+    font-weight: normal !important;
+    margin-right: 10px !important;
+}
+
+.icon-style{
+   width: 5% ;
+}
+
+.left-text{
+    text-align: left;
+}
+
+.right-text{
+    text-align: right;
+}
+
+.center-text{
+    text-align: center;
+}
+
+.listing-search-row {
+    border-bottom: 1px solid #d6d6d6;
+    padding: 15px;
+}
+
+.border-top{
+    border-top: 1px solid #d6d6d6;
+}
+
+.required{
+    color: red;
+    padding-left: 2em;
+    font-size: 16;
+}
+
+.twitter-typeahead .form-control{
+    padding: 6px 19px;
+}
