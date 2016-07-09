@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   rolify
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -20,7 +21,8 @@ class User < ActiveRecord::Base
   # For user registration through devise, it will be empty, set it here
   def set_user_type
   	if self.user_type_id.blank?
-  		self.user_type_id = 1
+  		customer_type_id = UserType.find_by(code: "CUSTOMER").id
+  		self.user_type_id = customer_type_id
   	end
   end
 

@@ -1,5 +1,6 @@
 $(document).ready ->
-  validate_user_registration()
+  if $('#new_user').length > 0
+    validate_user_registration()
 
 
 validate_user_registration = ->

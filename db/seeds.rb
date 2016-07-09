@@ -27,7 +27,7 @@ Role.create([
                   { name: 'finanace' },
                 ])
 
-admin_type_id = UserType.find_by(code: "ADMIN")
+admin_type_id = UserType.find_by(code: "ADMIN").id
 @admin = User.create(
                   { email: "takeeasylookbusy@gmail.com", first_name: "arun", 
                   	last_name: "singh", mobile_no: "9569806453", user_type_id: admin_type_id,
