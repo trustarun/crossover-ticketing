@@ -4,6 +4,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
+    @ticket = Ticket.new
     @tickets = Ticket.all
   end
 
@@ -21,20 +22,13 @@ class TicketsController < ApplicationController
   def edit
   end
 
-  # POST /tickets
-  # POST /tickets.json
+  # triggered with remote true from form in index
+  # response handled in create.js.erb
   def create
     @ticket = Ticket.new(ticket_params)
-
-    respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
-        format.json { render :show, status: :created, location: @ticket }
-      else
-        format.html { render :new }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
-      end
-    end
+    @ticket.issuer_user_id = current_user.id
+    @ticket.save
+    @tickets = current_user.tickets
   end
 
   # PATCH/PUT /tickets/1

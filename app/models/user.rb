@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   before_save :set_user_type
 
   belongs_to :user_type
+  has_many :tickets, foreign_key: 'issuer_user_id', dependent: :destroy
 
   def full_name
     last_name.present? ? "#{first_name} #{last_name}" : first_name
