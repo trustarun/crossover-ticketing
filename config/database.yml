@@ -1,0 +1,17 @@
+default: &default
+  adapter: mysql2
+  database: crossover_support_dev
+  username: root
+  pool: 5
+  timeout: 500
+
+development:
+  <<: *default
+  
+test:
+  <<: *default
+  database: crossover_support_test
+
+production:
+  <<: *default
+  database: crossover_support_prod
