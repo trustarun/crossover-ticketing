@@ -16,7 +16,7 @@
             <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> My Account <i class="icon-angle-down"></i></a>
             <ul class="dropdown-menu">
               <li><a href="<%=edit_user_registration_path%>">Change Password</a></li>
-              <li><a href="<%=set_path_edit_profile%>">Edit Account</a></li>
+              <li><a href="<%=tickets_path%>">Tickets</a></li>
             </ul>
           </li>
           <li>
@@ -28,18 +28,7 @@
         </ul>
       <% else %>
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Create Account <i class="icon-angle-down"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="/users/sign_up?account_id=1">Personal</a></li>
-              <li><a href="/users/sign_up?account_id=2">Hospital</a></li>
-              <li><a href="/users/sign_up?account_id=3">Doctor</a></li>
-              <li><a href="/users/sign_up?account_id=4">Pathology</a></li>
-              <li><a href="/users/sign_up?account_id=5">Chemist</a></li>
-              <li><a href="/users/sign_up?account_id=6">Online consultant</a></li>
-              <li><a href="/users/sign_up?account_id=7">Blood Bank</a></li>
-            </ul>
-          </li>
+          <li><a href="<%= new_user_registration_path %>"><i class="fa fa-sign-in"></i> Register</a></li>
           <li><a href="<%= new_user_session_path %>"><i class="fa fa-sign-in"></i> Login</a></li>
         </ul>
       <% end %>
