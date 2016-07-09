@@ -2,6 +2,18 @@ $(document).ready ->
   if $('#new_user').length > 0
     validate_user_registration()
 
+  if $('#datatable-editable_tickets').length > 0
+    $('#datatable-editable_tickets').dataTable(
+      'sPaginationType': 'full_numbers'
+      aoColumnDefs: [ {
+        bSortable: false
+        aTargets: [
+          -2
+          -1
+        ]
+      } ])
+    return
+
 
 validate_user_registration = ->
   $('#new_user').formValidation

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require jquery.dataTables.min
 //= require fvalidation/js/formValidation.js
 //= require fvalidation/js/bootstrap.min.js
 //= require crossover
