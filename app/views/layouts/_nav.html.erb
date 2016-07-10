@@ -13,7 +13,7 @@
       <% if user_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> My Account <i class="icon-angle-down"></i></a>
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= current_user.full_name%> <i class="icon-angle-down"></i></a>
             <ul class="dropdown-menu">
               <li><a href="<%=edit_user_registration_path%>">Change Password</a></li>
               <li><a href="<%=tickets_path%>">Tickets</a></li>

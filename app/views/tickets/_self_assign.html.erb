@@ -1,0 +1,9 @@
+<% if ticket.assigned_to_id.blank?%>                      
+  <%=link_to "Assign yourself", ticket_path(ticket, assign_self: true), method: 'put', remote: true%>
+<% else%> 
+    <% if ticket.assigned_to_id == current_user.id %>
+    <%=link_to "Unassign yourself", ticket_path(ticket, assign_self: false), method: 'put', remote: true%>
+    <%else%>
+     <%= ticket.assigned_user.full_name%>
+     <%end%> 
+<% end%>

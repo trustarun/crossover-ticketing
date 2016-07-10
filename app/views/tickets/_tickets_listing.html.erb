@@ -24,6 +24,9 @@
             <th aria-label="Last Name : activate to sort column ascending"  colspan="1" rowspan="1" aria-controls="datatable-editable" tabindex="0" role="columnheader" class="sorting">
                 Status
             </th>
+            <th aria-label="Last Name : activate to sort column ascending"  colspan="1" rowspan="1" aria-controls="datatable-editable" tabindex="0" role="columnheader" class="sorting">
+                Assign
+            </th>
           </tr>
         </thead>
           <tbody aria-relevant="all" aria-live="polite" role="alert">
@@ -42,8 +45,11 @@
                         <%= ticket.priority.name %>
                     </td>
                     <td class="">
-                    <%= ticket.status.name %>
-                    </td>                                  
+                      <%= ticket.status.name %>
+                    </td> 
+                    <td class="" id="td_<%=ticket.id%>">
+                     <%= render "self_assign", ticket: ticket%>
+                    </td>                                 
                 </tr>
               <% end %>
           </tbody>

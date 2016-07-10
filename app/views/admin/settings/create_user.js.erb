@@ -1,6 +1,6 @@
 <% if @user_saved %>
 	$('#new_user_modal').modal('hide')
-	$('#user_listing_container').html('<%= j render(render partial: 'users_listing', locals: {users: @users}) %>');
+	$('#user_listing_container').html('<%= j(render partial: "users_listing", locals: {users: @users}) %>');
 	$('#datatable-editable_users').dataTable({
 	'sPaginationType': 'full_numbers',
 	aoColumnDefs: [

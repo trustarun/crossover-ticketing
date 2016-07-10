@@ -3,7 +3,11 @@ class TicketsController < ApplicationController
 
   # GET /tickets
   # GET /tickets.json
-  def index
+  def index    
+    @tickets = current_user.tickets
+  end
+
+  def my_tickets
     @ticket = Ticket.new
     @tickets = current_user.tickets
   end
@@ -49,13 +53,18 @@ class TicketsController < ApplicationController
     when "change_priority"
       ticket_update_params[:priority_id] = params[:value]
     end
-    # update the current field sent by xeditable  
-    if @ticket.update(ticket_update_params)
-      render json: { status: 'success' }
+    # employee assigining himself
+    if params[:assign_self].present?
+      params[:assign_self]=="true" ? @ticket.update(assigned_to_id: current_user.id) : @ticket.update(assigned_to_id: nil)
     else
-      render json: { status: 'error', msg: @ticket.errors }
+      # update the current field sent by admin  
+      if @ticket.update(ticket_update_params)
+        render json: { status: 'success' }
+      else
+        render json: { status: 'error', msg: @ticket.errors }
+      end
     end
-    
+   
   end
 
   # DELETE /tickets/1
