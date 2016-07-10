@@ -45,10 +45,10 @@
                       <%= ticket.priority.name %>
                     </td>
                     <td class="">
-                      <%=render 'ticket_status_update', ticket: ticket%>
+                      <%=render 'ticket_status_update', ticket: ticket %>
                     </td> 
                     <td class="">
-                      <%= ticket.assigned_user ? ticket.assigned_user.full_name : "Assign"  %>
+                      <%=render 'assigned_to_update', ticket: ticket %>
                     </td>                                 
                 </tr>
               <% end %>

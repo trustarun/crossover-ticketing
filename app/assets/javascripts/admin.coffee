@@ -5,5 +5,6 @@ $(document).ready ->
 	return
 
 initialize_tickets_editable = ->
-  $('.ticket_status_update').editable {}
+  $('.ticket_status_update').editable {}  
+  $('.ticket_assigned_update').editable {}
   return

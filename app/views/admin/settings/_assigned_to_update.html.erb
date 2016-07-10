@@ -1,0 +1,1 @@
+<a href="javascript:void(0)" class="ticket_assigned_update" data-name="assign_to" data-type="select" data-pk="<%=ticket.id%>" data-value="<%= ticket.assigned_to_id ? ticket.assigned_to_id : "one" %>" data-url="<%=ticket_path(ticket.id)%>" data-source="/users.json" data-title="Select User"><%=ticket.assigned_user.present? ? ticket.assigned_user.full_name : "Assign" %></a>

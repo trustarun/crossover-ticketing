@@ -44,3 +44,28 @@ admin_type_id = UserType.find_by(code: "ADMIN").id
                 )
 
 @admin.add_role :admin
+
+@user = User.create(
+                  { email: "ajay@yahoo.co.in", first_name: "ajay", 
+                    last_name: "kumar", mobile_no: "9569806453", user_type_id: 1,
+                    password: "happyarun", password_confirmation: "happyarun"
+                  }
+                )
+
+@employee1 = User.create(
+                  { email: "kapil@gmail.com", first_name: "kapil", 
+                    last_name: "handa", mobile_no: "9569806453", user_type_id: 2,
+                    password: "happyarun", password_confirmation: "happyarun"
+                  }
+                )
+
+@employee1.add_role :finanace
+
+@employee2 = User.create(
+                  { email: "ishu@gmail.com", first_name: "ishu", 
+                    last_name: "yadav", mobile_no: "9569806453", user_type_id: 2,
+                    password: "happyarun", password_confirmation: "happyarun"
+                  }
+                )
+
+@employee2.add_role :hr
