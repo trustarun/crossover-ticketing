@@ -32,18 +32,26 @@ class TicketsController < ApplicationController
     @tickets = current_user.tickets
   end
 
-  # PATCH/PUT /tickets/1
+  
   # PATCH/PUT /tickets/1.json
+  # Update trigger by xeditable in front end
+  # allow only the parameter you need
   def update
-    respond_to do |format|
-      if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ticket }
-      else
-        format.html { render :edit }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
-      end
+    ticket_update_params = {}
+    updating_field = params[:name]
+    case updating_field
+    when "ticket_status_id"
+      ticket_update_params[:status_id] = params[:value]
+    when "ticket_category_id"
+      ticket_update_params[:category_id] = params[:value]
     end
+    # update the current field sent by xeditable  
+    if @ticket.update(ticket_update_params)
+      render json: { status: 'success' }
+    else
+      render json: { status: 'error', msg: @ticket.errors }
+    end
+    
   end
 
   # DELETE /tickets/1

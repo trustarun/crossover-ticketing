@@ -1,0 +1,16 @@
+<!-- Database table start -->
+<div class="row" id="admin-ticket-listing">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="fa fa-table"></i>Manage Tickets  
+        <div class="btn-group pull-right">                    
+          <%= link_to 'Export Ticket', "javascript:void(0)", class: "btn btn-info", id: "export_ticket" %>
+        </div>
+    </div>
+    <div class="widget-content padded clearfix" id="ticket_listing_container">
+      <%= render partial: 'tickets_listing', locals: {tickets: @tickets} %>
+    </div>
+  </div>
+</div>
+<!-- end DataTables -->
