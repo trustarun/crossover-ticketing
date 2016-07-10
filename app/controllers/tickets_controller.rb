@@ -40,12 +40,14 @@ class TicketsController < ApplicationController
     ticket_update_params = {}
     updating_field = params[:name]
     case updating_field
-    when "ticket_status_id"
+    when "change_status"
       ticket_update_params[:status_id] = params[:value]
-    when "ticket_category_id"
+    when "change_category"
       ticket_update_params[:category_id] = params[:value]
     when "assign_to"
       ticket_update_params[:assigned_to_id] = params[:value]
+    when "change_priority"
+      ticket_update_params[:priority_id] = params[:value]
     end
     # update the current field sent by xeditable  
     if @ticket.update(ticket_update_params)

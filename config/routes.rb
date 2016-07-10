@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :tickets
   resources :statuses, only: [:index]
   resources :users, only: [:index]
+  resources :priorities, only: [:index]
+  resources :categories, only: [:index]
+  
   namespace :admin do
   	resources :settings, only: [:index] do
   		collection do

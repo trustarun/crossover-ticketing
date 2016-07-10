@@ -59,7 +59,7 @@ admin_type_id = UserType.find_by(code: "ADMIN").id
                   }
                 )
 
-@employee1.add_role :finanace
+@employee1.add_role :manager
 
 @employee2 = User.create(
                   { email: "ishu@gmail.com", first_name: "ishu", 

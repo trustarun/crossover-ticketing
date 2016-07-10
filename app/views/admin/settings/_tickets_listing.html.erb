@@ -39,10 +39,10 @@
                       <%=link_to ticket.title, ticket_path(ticket.id) %>
                     </td>
                     <td class="">
-                      <%= ticket.category.name %>
+                      <%=render 'category_update', ticket: ticket %>
                     </td>
                     <td class="">
-                      <%= ticket.priority.name %>
+                      <%=render 'priority_update', ticket: ticket %>
                     </td>
                     <td class="">
                       <%=render 'ticket_status_update', ticket: ticket %>

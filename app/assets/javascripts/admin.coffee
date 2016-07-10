@@ -7,4 +7,6 @@ $(document).ready ->
 initialize_tickets_editable = ->
   $('.ticket_status_update').editable {}  
   $('.ticket_assigned_update').editable {}
+  $('.ticket_priority_update').editable {}
+  $('.ticket_category_update').editable {}    
   return
