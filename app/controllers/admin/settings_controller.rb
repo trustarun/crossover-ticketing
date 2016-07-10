@@ -36,6 +36,10 @@ class Admin::SettingsController < ApplicationController
 		@users = User.all
 	end	
 
+	def delete_user
+		User.find(params[:id]).destroy
+	end
+
 	private
 
     # Never trust parameters from the scary internet, only allow the white list through.

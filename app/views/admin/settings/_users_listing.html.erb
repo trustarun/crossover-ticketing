@@ -42,7 +42,7 @@
                       <%= user.roles.first.try(:name) %>
                     </td>
                     <td class="">
-                      Delete
+                      <a class="delete-row" href="javascript:void(0)" data-user_id="<%=user.id%>">Delete</a>
                     </td>                                               
                 </tr>
               <% end %>

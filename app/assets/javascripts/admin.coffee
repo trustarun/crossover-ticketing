@@ -15,15 +15,29 @@ initialize_tickets_editable = ->
   return
 
 initialize_users_datatable = ->
-  $('#datatable-editable_users').dataTable(
+  nEditing = null
+  # initialize datatable for library type
+  oTable = $('#datatable-editable_users').dataTable(
     'sPaginationType': 'full_numbers'
     aoColumnDefs: [ {
       bSortable: false
       aTargets: [
-         1
+        1
         -1
       ]
     } ])
+  # delete library type
+  $('#datatable-editable_users').on 'click', 'a.delete-row', (e) ->
+    confirmed = confirm('Are you sure?')
+    if confirmed
+      e.preventDefault()
+      nRow = $(this).parents('tr')[0]
+      oTable.fnDeleteRow nRow
+      $.ajax
+        type: 'DELETE'
+        url: "/admin/delete_user/"+$(this).data('user_id')+".js"      
+        contentType: 'script'
+    return
   return
 
 new_user_model = ->

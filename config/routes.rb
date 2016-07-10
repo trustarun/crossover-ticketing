@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :priorities, only: [:index]
   resources :categories, only: [:index]
   
+  delete "admin/delete_user/:id" => "admin/settings#delete_user", as: :admin_user_delete
+
   namespace :admin do
   	resources :settings, only: [:index] do
   		collection do
