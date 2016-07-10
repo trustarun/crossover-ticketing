@@ -17,7 +17,8 @@ Category.create([
                   { name: 'Software', code: 'SOFTWARE' },
                   { name: 'Hardware', code: 'HARDWARE' },
                   { name: 'Billing', code: 'BILLING' },
-                  { name: 'Payment', code: 'PAYMENT' }
+                  { name: 'Payment', code: 'PAYMENT' },
+                  { name: 'Other', code: 'OTHER' }
                 ])
 
 Role.create([

@@ -29,7 +29,7 @@
       <%= f.select :priority_id, Priority.all.collect {|priority| [ priority.name, priority.id ] }, class: "form-control" , placeholder: "Mobile number"%>
     </div>
       <div class="actions">
-      <%= f.submit "Create", class: "btn-primary" %>
+      <%= f.submit "Create", class: "btn-primary", id: "raise_new_ticket" %>
     </div>
   <fieldset>
 <% end %>
