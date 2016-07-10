@@ -1,0 +1,68 @@
+
+  <div id="datatable-editable_wrapper" class="dataTables_wrapper" role="grid">
+      <div class="dataTables_length" id="datatable-editable_length">
+          <!-- js loaded html comes here -->
+      </div>
+      <div id="datatable-editable_filter" class="dataTables_filter">
+          <!-- js loaded html comes here -->
+      </div>
+      <table aria-describedby="datatable-editable_info" class="table table-bordered table-striped dataTable" id="datatable-editable_tickets">
+        <thead>
+          <tr role="row">
+            <th aria-label="First Name : activate to sort column descending" aria-sort="ascending" colspan="1" rowspan="1" aria-controls="datatable-editable" tabindex="0" role="columnheader" class="sorting_asc">
+                Ticket ID
+            </th>
+            <th aria-label="First Name : activate to sort column descending" aria-sort="ascending" colspan="1" rowspan="1" aria-controls="datatable-editable" tabindex="0" role="columnheader" class="sorting_asc">
+                Title
+            </th>
+            <th aria-label="First Name : activate to sort column descending" aria-sort="ascending" colspan="1" rowspan="1" aria-controls="datatable-editable" tabindex="0" role="columnheader" class="sorting_asc">
+                Category
+            </th>
+             <th aria-label="Last Name : activate to sort column ascending"  colspan="1" rowspan="1" aria-controls="datatable-editable" tabindex="0" role="columnheader" class="sorting">
+                Priority
+            </th>
+            <th aria-label="Last Name : activate to sort column ascending"  colspan="1" rowspan="1" aria-controls="datatable-editable" tabindex="0" role="columnheader" class="sorting">
+                Status
+            </th>
+            <th aria-label="Last Name : activate to sort column ascending"  colspan="1" rowspan="1" aria-controls="datatable-editable" tabindex="0" role="columnheader" class="sorting">
+                Assigned
+            </th>
+          </tr>
+        </thead>
+          <tbody aria-relevant="all" aria-live="polite" role="alert">
+              <% tickets.each do |ticket| %>
+                <tr>
+                    <td class="sorting_1">
+                        <%=link_to ticket.id, ticket_path(ticket.id) %>
+                    </td>
+                    <td class="">
+                        <%=link_to ticket.title, ticket_path(ticket.id) %>
+                    </td>
+                    <td class="">
+                        <%= ticket.category.name %>
+                    </td>
+                    <td class="">
+                        <%= ticket.priority.name %>
+                    </td>
+                    <td class="">
+                      <% if current_user.user_type_id == 2%>
+                        <%=render 'admin/settings/ticket_status_update', ticket: ticket %>
+                      <% else %>
+                        <%= ticket.status.name %>
+                      <% end %>
+                    </td> 
+                    <td class="">
+                     <%= ticket.assigned_to_id ? ticket.assigned_user.full_name : "Unassigned" %>
+                    </td>                                 
+                </tr>
+              <% end %>
+          </tbody>
+      </table>
+      <div id="datatable-editable_info" class="dataTables_info">
+          <!-- js loaded current page info comes here -->
+      </div>
+      <div id="datatable-editable_paginate" class="dataTables_paginate paging_full_numbers">
+          <!-- js loaded pagination comes here -->
+      </div>
+    </div>
+  </div>

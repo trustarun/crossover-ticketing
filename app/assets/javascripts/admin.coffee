@@ -2,6 +2,10 @@ $(document).ready ->
 	$.fn.editable.defaults.ajaxOptions = type: 'PUT'
 	if $('#admin-ticket-listing').length > 0
 		initialize_tickets_editable()
+
+  if $('#my_ticket_listing_container').length > 0    
+     $('.ticket_status_update').editable {}
+    
 	if $('#admin-user-listing').length > 0
 		initialize_users_datatable()
 		new_user_model()
