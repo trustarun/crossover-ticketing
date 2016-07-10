@@ -15,6 +15,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '3.5.6'
 gem 'pundit'
 gem 'rolify'
+gem 'prawn'
+gem 'prawn-table'
 
 group :development do
   gem 'web-console', '~> 2.0'
@@ -39,4 +41,5 @@ group :development, :test do
   gem 'rspec-rails', '3.4'
   gem 'factory_girl_rails'
   gem 'byebug'
+  gem 'pg'
 end

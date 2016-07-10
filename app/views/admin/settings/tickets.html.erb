@@ -5,7 +5,7 @@
       <div class="heading">
         <i class="fa fa-table"></i>Manage Tickets  
         <div class="btn-group pull-right">                    
-          <%= link_to 'Export Ticket', "javascript:void(0)", class: "btn btn-info", id: "export_ticket" %>
+          <%= link_to 'Export Ticket', tickets_admin_settings_path(format: 'pdf'), class: "btn btn-info", id: "export_ticket" %>
         </div>
     </div>
     <div class="widget-content padded clearfix" id="ticket_listing_container">
