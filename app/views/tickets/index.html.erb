@@ -8,7 +8,7 @@
           <%= link_to 'New Ticket', "javascript:void(0)", class: "btn btn-info", id: "add_new_ticket" %>
         </div>
     </div>
-    <div class="widget-content padded clearfix" id: "ticket_listing_container">
+    <div class="widget-content padded clearfix" id="ticket_listing_container">
       <%= render partial: 'tickets_listing', locals: {tickets: @tickets} %>
     </div>
   </div>

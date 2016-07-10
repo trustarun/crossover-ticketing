@@ -1,4 +1,4 @@
-<div class="widget-content padded clearfix">
+
   <div id="datatable-editable_wrapper" class="dataTables_wrapper" role="grid">
       <div class="dataTables_length" id="datatable-editable_length">
           <!-- js loaded html comes here -->
@@ -16,7 +16,7 @@
                 Title
             </th>
             <th aria-label="First Name : activate to sort column descending" aria-sort="ascending" colspan="1" rowspan="1" aria-controls="datatable-editable" tabindex="0" role="columnheader" class="sorting_asc">
-                Description
+                Category
             </th>
              <th aria-label="Last Name : activate to sort column ascending"  colspan="1" rowspan="1" aria-controls="datatable-editable" tabindex="0" role="columnheader" class="sorting">
                 Priority
@@ -30,19 +30,19 @@
               <% tickets.each do |ticket| %>
                 <tr>
                     <td class="sorting_1">
-                        <%= ticket.id %>
+                        <%=link_to ticket.id, ticket_path(ticket.id) %>
                     </td>
                     <td class="">
-                        <%= ticket.title %>
+                        <%=link_to ticket.title, ticket_path(ticket.id) %>
                     </td>
                     <td class="">
-                        <%= ticket.description %>
+                        <%= ticket.category.name %>
                     </td>
                     <td class="">
-                        <%= ticket.priority_id %>
+                        <%= ticket.priority.name %>
                     </td>
                     <td class="">
-                    <%= ticket.status_id %>
+                    <%= ticket.status.name %>
                     </td>                                  
                 </tr>
               <% end %>
@@ -56,4 +56,3 @@
       </div>
     </div>
   </div>
-</div>

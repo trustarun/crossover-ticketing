@@ -17,14 +17,21 @@ Category.create([
                   { name: 'Software', code: 'SOFTWARE' },
                   { name: 'Hardware', code: 'HARDWARE' },
                   { name: 'Billing', code: 'BILLING' },
-                  { name: 'Payment', code: 'PAYMENT' },
+                  { name: 'Payment', code: 'PAYMENT' }
                 ])
 
 Role.create([
                   { name: 'manager' },
                   { name: 'technical_architect' },
                   { name: 'hr' },
-                  { name: 'finanace' },
+                  { name: 'finanace' }
+                ])
+
+Priority.create([
+                  { name: 'Low', code: 'LOW' },
+                  { name: 'Medium', code: 'MEDIUM' },
+                  { name: 'High', code: 'HIGH' },
+                  { name: 'Critical', code: 'CRITICAL' }
                 ])
 
 admin_type_id = UserType.find_by(code: "ADMIN").id

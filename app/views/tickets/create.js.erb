@@ -1,3 +1,13 @@
-$('#ticket_listing_container').html('<%= j render(partial: 'tickets_listing', locals: {tickets: @tickets}) %>');
-$('#new_ticket_modal').modal('hide')
-initialize_tickets_datatable()
+<% if @ticket_saved %>
+	$('#new_ticket_modal').modal('hide')
+	$('#ticket_listing_container').html('<%= j render(partial: 'tickets_listing', locals: {tickets: @tickets}) %>');
+	$('#datatable-editable_tickets').dataTable({
+	'sPaginationType': 'full_numbers',
+	aoColumnDefs: [
+	  {
+	    bSortable: false,
+	    aTargets: [1, -1]
+	  }
+	]
+	});
+<% end %>

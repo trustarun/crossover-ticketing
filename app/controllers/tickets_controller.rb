@@ -5,7 +5,7 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @ticket = Ticket.new
-    @tickets = Ticket.all
+    @tickets = current_user.tickets
   end
 
   # GET /tickets/1
@@ -28,6 +28,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(ticket_params)
     @ticket.issuer_user_id = current_user.id
     @ticket.save
+    @ticket_saved = @ticket.errors.blank?
     @tickets = current_user.tickets
   end
 

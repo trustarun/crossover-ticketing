@@ -7,6 +7,7 @@ $(document).ready ->
 
   if $('#datatable-editable_tickets').length > 0
     initialize_tickets_datatable()
+    validate_ticket_creation()
 
 
 validate_user_registration = ->
@@ -42,6 +43,27 @@ new_ticket_model = ->
     $('#new_ticket_modal').modal 'show'
     return
   $('.cancel_ticket_creation').on 'click', ->
+    $('#new_ticket').data('formValidation').resetForm()
     $('#new_ticket_modal').modal 'hide'
-    return
+    $('#ticket_title').val("")
+    $('#ticket_description').val("")
+  return
+
+validate_ticket_creation = ->
+  $('#raise_new_ticket').on 'click', ->
+    preventDefault()
+    if $('#new_ticket').data('formValidation').validate().isValid()
+      true
+    else
+      false
+
+  $('#new_ticket').formValidation
+    framework: 'bootstrap'
+    icon:
+      valid: 'fa fa-check'
+      invalid: 'fa fa-times'
+      validating: 'fa fa-refresh'
+    fields:
+      'ticket[title]': validators: notEmpty: message: 'Title is required.'
+      'ticket[description]': validators: notEmpty: message: 'Description is required.'
   return
