@@ -1,44 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="fa fa-table"></i>Ticket Detail  
+    </div>
+    <div class="widget-content padded clearfix">      
+      <p>
+        <strong>Title:</strong>
+        <%= @ticket.title %>
+      </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @ticket.title %>
-</p>
+      <p>
+        <strong>Description:</strong>
+        <%= @ticket.description %>
+      </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @ticket.description %>
-</p>
+      <p>
+        <strong>Issuer user:</strong>
+        <%= @ticket.user.full_name %>
+      </p>
 
-<p>
-  <strong>Issuer user:</strong>
-  <%= @ticket.issuer_user_id %>
-</p>
+      <p>
+        <strong>Assigned to:</strong>
+        <%= @ticket.assigned_to_id ? @ticket.assigned_user.full_name : "UnAssigned" %>
+      </p>
 
-<p>
-  <strong>Assigned to:</strong>
-  <%= @ticket.assigned_to_id %>
-</p>
+      <p>
+        <strong>Category:</strong>
+        <%= @ticket.category.name %>
+      </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @ticket.category_id %>
-</p>
+      <p>
+        <strong>Status:</strong>
+        <%= @ticket.status.name %>
+      </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @ticket.status_id %>
-</p>
-
-<p>
-  <strong>Priority:</strong>
-  <%= @ticket.priority_id %>
-</p>
-
-<p>
-  <strong>Due date:</strong>
-  <%= @ticket.due_date %>
-</p>
-
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<%= link_to 'Back', tickets_path %>
+      <p>
+        <strong>Priority:</strong>
+        <%= @ticket.priority.name %>
+      </p>
+    </div>
+  </div>
+</div>

@@ -138,8 +138,15 @@ legend.scheduler-border {
 
 .widget-container .widget-content {
     width: 100%;
+    min-height: 500px
 }
 
 .padded {
     padding: 15px;
+}
+
+.admin-button {
+    margin-bottom: 20px;
+    min-height: 200px;
+    min-width: 200px;
 }
