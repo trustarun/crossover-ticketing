@@ -5,6 +5,7 @@ $(document).ready ->
 	if $('#admin-user-listing').length > 0
 		initialize_users_datatable()
 		new_user_model()
+		$('.user_role_update').editable {}
 	return
 
 initialize_tickets_editable = ->

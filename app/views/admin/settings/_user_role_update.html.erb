@@ -1,0 +1,1 @@
+<a href="javascript:void(0)" class="user_role_update" data-name="change_role" data-type="select" data-pk="<%=user.id%>" data-value="<%=user.roles.first.try(:id)%>" data-url="<%=update_role_path(user.id)%>" data-source="/roles.json" data-title="change Role"><%=user.roles.first.try(:name)%></a>

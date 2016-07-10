@@ -39,7 +39,7 @@
                       <%= user.user_type.name %>
                     </td>
                     <td class="">
-                      <%= user.roles.first.try(:name) %>
+                        <%=render 'user_role_update', user: user %>
                     </td>
                     <td class="">
                       <a class="delete-row" href="javascript:void(0)" data-user_id="<%=user.id%>">Delete</a>
