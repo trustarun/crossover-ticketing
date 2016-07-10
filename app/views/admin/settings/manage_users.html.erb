@@ -1,0 +1,17 @@
+<!-- Database table start -->
+<div class="row" id="admin-user-listing">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="fa fa-table"></i>Manage Users  
+        <div class="btn-group pull-right">                    
+          <%= link_to 'Create User', "javascript:void(0)", class: "btn btn-info", id: "admin_create_user" %>
+        </div>
+    </div>
+    <div class="widget-content padded clearfix" id="user_listing_container">
+      <%= render partial: 'users_listing', locals: {users: @users} %>
+    </div>
+  </div>
+</div>
+<!-- end DataTables -->
+<%= render "new_user_modal" %>
