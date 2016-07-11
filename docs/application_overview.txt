@@ -1,0 +1,29 @@
+This is a Application to manage support tickets for any enterprise.
+
+There is three role in the application:
+
+1 - Customer
+    -> Can register on the site
+    -> Can change his profile and password
+    -> Can raise tickets for issue he is facing
+    -> Can see the status of his tickets under "My Tickets" tab
+
+2 - Employee
+    -> Can be created only by admin(they can't register themself)
+    -> Admin can assign role to a employee
+    -> They can see all tickets assigned to them under "My Tickets" tab
+    -> They can view all the open tickets and can assigin any of them to themself
+    -> They can change the status of ticket they own
+    -> They can unassign themself from a ticket
+
+3 - Admin
+	-> They are seed user of the application
+    -> Application settings page is accessible only to Admin
+    -> Admin can assign role of admin or any other role to a user
+    -> Admin can create and delete a user
+    -> Admin can assign a ticket to any employee he wish
+    -> Admin can change priority of a ticket
+    -> Admin can change category and status of a ticket
+    -> Admin can download Ticket Report in pdf format
+
+To know further detail like setup, test coverage etc , see documents in docs folder of  the application
