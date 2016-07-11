@@ -17,6 +17,7 @@ gem 'pundit'
 gem 'rolify'
 gem 'prawn'
 gem 'prawn-table'
+gem 'pg'
 
 group :development do
   gem 'web-console', '~> 2.0'
@@ -41,5 +42,4 @@ group :development, :test do
   gem 'rspec-rails', '3.4'
   gem 'factory_girl_rails'
   gem 'byebug'
-  gem 'pg'
 end
