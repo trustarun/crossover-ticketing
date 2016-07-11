@@ -1,0 +1,169 @@
+___________________________________________________________________________
+
+STEP 1: Install RVM
+
+	Follow instruction from below link:
+	https://codedecoder.wordpress.com/2012/10/30/rvm-not-found-or-installed/
+
+_____________________________________________________________________________
+
+STEP 2: Install Ruby
+
+	Follow instruction from below link:
+	https://codedecoder.wordpress.com/2012/11/28/ubuntu-ruby-installation-rvm/
+
+_____________________________________________________________________________
+
+STEP 3: Install dependency packages:
+
+	$ sudo apt-get install libmysqlclient-dev
+	$ sudo apt-get install libpq-dev
+	$ sudo apt-get install ruby-dev
+	$ sudo apt-get install libxml2-dev
+	$ sudo apt-get install libxslt-dev
+	$ sudo apt-get install libcurl4-openssl-dev
+
+_______________________________________________________________________________
+
+STEP 4: Install Mysql
+
+	$ sudo apt-get install mysql-server
+	$ sudo apt-get install mysql-client
+
+	During the installation process you will be prompted to enter a password for the MySQL root user.
+
+	Once the installation is complete, the MySQL server should be started automatically. 
+  You can run the following command from a terminal prompt to check whether the MySQL server is running:
+
+	$sudo netstat -tap | grep mysql
+
+	When you run this command, you should see the following line or something similar:
+
+	tcp        0      0 localhost.localdomain:mysql           *:* LISTEN -
+
+	If the server is not running correctly, you can type the following command to start it:
+
+	$ sudo /etc/init.d/mysql restart
+
+	You can edit the /etc/mysql/my.cnf file to configure the basic settings: log file, port number, etc.
+
+______________________________________________________________________________________________
+
+STEP 5: Pull code from git
+
+	Make customer-portal folder. We will maintain different cportal branches within it
+
+	$ mkdir customer-portal
+	$ cd customer-portal
+	$ git clone https://github.com/ThirdPillar/cportal.git nottingham
+
+________________________________________________________________________________________________
+
+STEP 12: set the configuration in database.yaml file
+
+	change the value as per your need. We are running in staging mode
+
+	staging:
+		adapter: mysql2
+		encoding: utf8
+		database: nottingham_staging
+		pool: 5
+		username: root
+		password: batman206
+		host: localhost
+		port: 3306
+
+________________________________________________________________________________________________
+
+STEP 13: Preparing the Gemset
+
+-> $ cd to project folder
+-> $ git checkout nottingham
+-> $ rvm gemset create cportal # if not allready created
+-> $ rvm gemset use cportal
+-> $ bundle install --deployment --without production test development
+
+________________________________________________________________________________________________
+
+STEP 14: Create the database
+
+-> $ cd to project folder
+-> $ bundle exec rake db:create RAILS_ENV=staging # needed only for the first time
+-> $ bundle exec rake db:migrate RAILS_ENV=staging
+
+_________________________________________________________________________________________________
+
+STEP 15: Compile the Assets
+
+-> $ cd to project folder
+-> $ bundle exec rake assets:precompile RAILS_ENV=staging
+
+_________________________________________________________________________________________________
+
+STEP 16: modify the sidekiq configuration
+
+	We are running multiple instance of app managed by same sidekiq instance.
+	So we need to modify the sidekiq conf, assiging each app one perticuler redis port.
+
+	The file(config/initializers/sidekiq.rb) should look like this
+
+	require 'sidekiq'
+	require 'sidekiq-status'
+
+	Sidekiq.configure_client do |config|
+		config.client_middleware do |chain|
+		  chain.add Sidekiq::Status::ClientMiddleware
+		end
+		config.redis = { :namespace => 'nottingham', :url => 'redis://127.0.0.1:6379/1' }
+	end
+
+	Sidekiq.configure_server do |config|
+		config.server_middleware do |chain|
+		  chain.add Sidekiq::Status::ServerMiddleware, expiration: 30.minutes # default
+		end
+		config.redis = { :namespace => 'nottingham', :url => 'redis://127.0.0.1:6379/1' }
+	end
+
+
+
+	Note: If you have another app called jersey, then change namspace to jersey and 
+  url to :url => 'redis://127.0.0.1:6379/2' and so on
+
+_______________________________________________________________________________________________
+
+STEP 17: Start sidekiq
+
+	-> $ cd to project folder
+	-> $ bundle exec sidekiq -e staging -d -L log/sidekiq.log
+	-> after each deployment you need to kill the current running sidekiq 
+		 instance and restart it again
+
+______________________________________________________________________________________________
+
+STEP 18: Restart the server
+
+	-> $ sudo /etc/init.d/nginx restart
+  -> If you get problem in restarting nginx using above command
+     Kill the process and restart it
+		$ sudo su -
+		# ps -ef | grep nginx
+			root     11313     1  0 04:55 ?        00:00:00 nginx: master process /opt/nginx/sbin/nginx -c /opt/nginx/conf/nginx.conf
+			nobody   11314 11313  0 04:55 ?        00:00:00 nginx: worker process                              
+			tpsadmin 15573  5117  0 05:30 pts/2    00:00:00 grep --color=auto nginx
+
+		# kill -9 11313
+		# kill -9 11314
+		# /etc/init.d/nginx restart
+		 * Stopping Nginx Server...                          [Fail] 
+		 * Starting Nginx Server...                           O.K
+
+______________________________________________________________________________________________
+
+STEP 19: Verfiy in browser
+  
+	Go to your app url and see that it is up and running
+
+
+
+
+

@@ -1,6 +1,12 @@
 Test cases are written using Rspec, Capybara, Selenium_webkit and factory_girl Gems.
 All the tests are written as BDD and so run as feature Specs.
 
+To run the test foloww below steps:
+
+1 - Setup the project as described in project_setup.txt file
+2 - Run below command on termina from project root
+    $ rspec
+
 Below test scenerio are covered :
 
 User Login
@@ -29,3 +35,16 @@ Admin Feature
 3 - Admin should add User
 4 - Admin should assign Role to user
 5 - Admin should delete a User
+
+PENDING:
+1 - Admin should have acees to Mange Ticket page
+2 - Admin should be able assign ticket to any user
+3 - Admin can change status of any ticket
+4 - Admin can change priority of any ticket
+5 - Admin can change category of any ticket
+
+Employee Feature(Pending)
+***********************************************************************************
+
+1 - should able to assign a ticket to himself
+2 - should able to change status of Ticket

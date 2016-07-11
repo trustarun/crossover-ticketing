@@ -49,28 +49,8 @@ new_user_model = ->
   $('#admin_create_user').on 'click', ->
     $('#new_user_modal').modal 'show'    
     return
-  $('.cancel_user_creation').on 'click', ->
-    $('#create_new_user').data('formValidation').resetForm()
+  $('.cancel_user_creation').on 'click', ->    
     $('#new_user_modal').modal 'hide'
     $('#user_title').val("")
     $('#user_description').val("")
-  return
-
-validate_user_creation = ->
-  $('#raise_new_user').on 'click', ->
-    preventDefault()
-    if $('#create_new_user').data('formValidation').validate().isValid()
-      true
-    else
-      false
-
-  $('#create_new_user').formValidation
-    framework: 'bootstrap'
-    icon:
-      valid: 'fa fa-check'
-      invalid: 'fa fa-times'
-      validating: 'fa fa-refresh'
-    fields:
-      'user[first_name]': validators: notEmpty: message: 'First name is required.'
-      'user[last_name]': validators: notEmpty: message: 'Last name is required.'
   return
