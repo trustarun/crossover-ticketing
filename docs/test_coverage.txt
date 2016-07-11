@@ -1,0 +1,22 @@
+Test cases are written using Rspec, Capybara, Selenium_webkit and factory_girl Gems.
+All the tests are written as BDD and so run as feature Specs.
+
+Below test scenerio are covered :
+
+User Login
+**********************************************************************************
+1 - User should able to login
+2 - User shoul land on different page based on there UserType
+      -> Customer and Employee lands on My ticket Page
+      -> Admin lands on Setting page
+
+3 - Selective Navigation link based on User Type
+     -> Admin will have 4 links: "Change Password", "All Tickets", "Manage Users", "Manage Tickets"
+     -> Employee have 3 links: "Change Password", "All Tickets", "My tickets"
+     -> Customer will have 2 links "Change password and My tickets"
+
+
+
+Access Controll
+***********************************************************************************
+1 - Non Admin user can't access admin's setting page
