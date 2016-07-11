@@ -1,28 +1,48 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Application to manage support tickets for any enterprise.
 
-Things you may want to cover:
+There is three role in the application:
 
-* Ruby version
+1 - Customer
+    -> Can register on the site
+    -> Can change his profile and password
+    -> Can raise tickets for issue he is facing
+    -> Can see the status of his tickets under "My Tickets" tab
 
-* System dependencies
+2 - Employee
+    -> Can be created only by admin(they can't register themself)
+    -> Admin can assign role to a employee
+    -> They can see all tickets assigned to them under "My Tickets" tab
+    -> They can view all the open tickets and can assigin any of them to themself
+    -> They can change the status of ticket they own
+    -> They can unassign themself from a ticket
 
-* Configuration
+3 - Admin
+	-> They are seed user of the application
+    -> Application settings page is accessible only to Admin
+    -> Admin can assign role of admin or any other role to a user
+    -> Admin can create and delete a user
+    -> Admin can assign a ticket to any employee he wish
+    -> Admin can change priority of a ticket
+    -> Admin can change category and status of a ticket
+    -> Admin can download Ticket Report in pdf format
 
-* Database creation
+To know further detail like setup, test coverage etc , see documents in docs folder of  the application
 
-* Database initialization
+Application demo is available at : http://crossover-support.herokuapp.com/
 
-* How to run the test suite
+Use below credential:
 
-* Services (job queues, cache servers, search engines, etc.)
+Admin:
+username: takeeasylookbusy@gmail.com
+password: happyarun
 
-* Deployment instructions
+Employee:
+username: kapil@gmail.com
+password: happyarun
 
-* ...
+Customer:
+username: ajay@yahoo.co.in
+password: happyarun
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
