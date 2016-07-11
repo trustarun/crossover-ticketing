@@ -1,3 +1,5 @@
+Follow below steps to setup the application on your local machine
+
 ___________________________________________________________________________
 
 STEP 1: Install RVM
@@ -51,117 +53,66 @@ ________________________________________________________________________________
 
 STEP 5: Pull code from git
 
-	Make customer-portal folder. We will maintain different cportal branches within it
-
-	$ mkdir customer-portal
-	$ cd customer-portal
-	$ git clone https://github.com/ThirdPillar/cportal.git nottingham
+	$ mkdir projects
+	$ cd projects
+	$ git clone https://github.com/trustarun/crossover-ticketing.git
 
 ________________________________________________________________________________________________
 
-STEP 12: set the configuration in database.yaml file
+STEP 6: set the configuration in database.yaml file
 
-	change the value as per your need. We are running in staging mode
+	change the value as per your need. change the username password to your mysql value.
+    In case your mysql do not have a password, completly remove the password line
 
-	staging:
-		adapter: mysql2
-		encoding: utf8
-		database: nottingham_staging
-		pool: 5
-		username: root
-		password: batman206
-		host: localhost
-		port: 3306
+	default: &default
+	  adapter: mysql2
+	  database: crossover_support_dev
+	  username: root
+      password: root
+	  pool: 5
+	  timeout: 500
+
+	development:
+	  <<: *default
+	  
+	test:
+	  <<: *default
+	  database: crossover_support_test
+
+	production:
+	  <<: *default
+	  database: crossover_support_prod
 
 ________________________________________________________________________________________________
 
-STEP 13: Preparing the Gemset
+STEP 7: Preparing the Gemset
 
 -> $ cd to project folder
--> $ git checkout nottingham
--> $ rvm gemset create cportal # if not allready created
--> $ rvm gemset use cportal
--> $ bundle install --deployment --without production test development
+-> $ rvm gemset create crossover-ticketing # if not allready created
+-> $ rvm gemset use crossover-ticketing
+-> $ bundle install
 
 ________________________________________________________________________________________________
 
-STEP 14: Create the database
+STEP 8: Create the database
 
 -> $ cd to project folder
--> $ bundle exec rake db:create RAILS_ENV=staging # needed only for the first time
--> $ bundle exec rake db:migrate RAILS_ENV=staging
+-> $ bundle exec rake db:setup
+
 
 _________________________________________________________________________________________________
 
-STEP 15: Compile the Assets
-
--> $ cd to project folder
--> $ bundle exec rake assets:precompile RAILS_ENV=staging
-
-_________________________________________________________________________________________________
-
-STEP 16: modify the sidekiq configuration
-
-	We are running multiple instance of app managed by same sidekiq instance.
-	So we need to modify the sidekiq conf, assiging each app one perticuler redis port.
-
-	The file(config/initializers/sidekiq.rb) should look like this
-
-	require 'sidekiq'
-	require 'sidekiq-status'
-
-	Sidekiq.configure_client do |config|
-		config.client_middleware do |chain|
-		  chain.add Sidekiq::Status::ClientMiddleware
-		end
-		config.redis = { :namespace => 'nottingham', :url => 'redis://127.0.0.1:6379/1' }
-	end
-
-	Sidekiq.configure_server do |config|
-		config.server_middleware do |chain|
-		  chain.add Sidekiq::Status::ServerMiddleware, expiration: 30.minutes # default
-		end
-		config.redis = { :namespace => 'nottingham', :url => 'redis://127.0.0.1:6379/1' }
-	end
 
 
+STEP 9: start the server
 
-	Note: If you have another app called jersey, then change namspace to jersey and 
-  url to :url => 'redis://127.0.0.1:6379/2' and so on
-
-_______________________________________________________________________________________________
-
-STEP 17: Start sidekiq
-
-	-> $ cd to project folder
-	-> $ bundle exec sidekiq -e staging -d -L log/sidekiq.log
-	-> after each deployment you need to kill the current running sidekiq 
-		 instance and restart it again
+-> $ rails s
 
 ______________________________________________________________________________________________
 
-STEP 18: Restart the server
-
-	-> $ sudo /etc/init.d/nginx restart
-  -> If you get problem in restarting nginx using above command
-     Kill the process and restart it
-		$ sudo su -
-		# ps -ef | grep nginx
-			root     11313     1  0 04:55 ?        00:00:00 nginx: master process /opt/nginx/sbin/nginx -c /opt/nginx/conf/nginx.conf
-			nobody   11314 11313  0 04:55 ?        00:00:00 nginx: worker process                              
-			tpsadmin 15573  5117  0 05:30 pts/2    00:00:00 grep --color=auto nginx
-
-		# kill -9 11313
-		# kill -9 11314
-		# /etc/init.d/nginx restart
-		 * Stopping Nginx Server...                          [Fail] 
-		 * Starting Nginx Server...                           O.K
-
-______________________________________________________________________________________________
-
-STEP 19: Verfiy in browser
+STEP 10: Verfiy in browser
   
-	Go to your app url and see that it is up and running
+	Go to your localhost:3000 and see that it is up and running
 
 
 
