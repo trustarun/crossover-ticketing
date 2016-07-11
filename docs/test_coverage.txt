@@ -20,3 +20,12 @@ User Login
 Access Controll
 ***********************************************************************************
 1 - Non Admin user can't access admin's setting page
+
+
+Admin Feature
+***********************************************************************************
+1 - Admin can acess setting page
+2 - Setting page should have link to manage user and manage ticket page
+3 - Admin should add User
+4 - Admin should assign Role to user
+5 - Admin should delete a User
