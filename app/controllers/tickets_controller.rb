@@ -3,7 +3,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets
   # GET /tickets.json
-  def index    
+  def index
     @tickets = current_user.tickets
   end
 
@@ -36,7 +36,6 @@ class TicketsController < ApplicationController
     @tickets = current_user.my_tickets
   end
 
-  
   # PATCH/PUT /tickets/1.json
   # Update trigger by xeditable in front end
   # allow only the parameter you need
@@ -44,27 +43,26 @@ class TicketsController < ApplicationController
     ticket_update_params = {}
     updating_field = params[:name]
     case updating_field
-    when "change_status"
+    when 'change_status'
       ticket_update_params[:status_id] = params[:value]
-    when "change_category"
+    when 'change_category'
       ticket_update_params[:category_id] = params[:value]
-    when "assign_to"
+    when 'assign_to'
       ticket_update_params[:assigned_to_id] = params[:value]
-    when "change_priority"
+    when 'change_priority'
       ticket_update_params[:priority_id] = params[:value]
     end
     # employee assigining himself
     if params[:assign_self].present?
-      params[:assign_self]=="true" ? @ticket.update(assigned_to_id: current_user.id) : @ticket.update(assigned_to_id: nil)
+      params[:assign_self] == 'true' ? @ticket.update(assigned_to_id: current_user.id) : @ticket.update(assigned_to_id: nil)
     else
-      # update the current field sent by admin  
+      # update the current field sent by admin
       if @ticket.update(ticket_update_params)
         render json: { status: 'success' }
       else
         render json: { status: 'error', msg: @ticket.errors }
       end
     end
-   
   end
 
   # DELETE /tickets/1
@@ -78,13 +76,14 @@ class TicketsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ticket
-      @ticket = Ticket.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ticket_params
-      params.require(:ticket).permit(:title, :description, :issuer_user_id, :assigned_to_id, :category_id, :status_id, :priority_id, :due_date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ticket_params
+    params.require(:ticket).permit(:title, :description, :issuer_user_id, :assigned_to_id, :category_id, :status_id, :priority_id, :due_date)
+  end
 end

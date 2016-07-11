@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :priority do
-    name "MyString"
-    code "MyString"
+    name 'MyString'
+    code 'MyString'
   end
 end

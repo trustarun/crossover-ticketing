@@ -1,19 +1,19 @@
 require 'rails_helper'
 
-RSpec.describe "tickets/show", type: :view do
+RSpec.describe 'tickets/show', type: :view do
   before(:each) do
     @ticket = assign(:ticket, Ticket.create!(
-      :title => "Title",
-      :description => "MyText",
-      :issuer_user_id => 1,
-      :assigned_to_id => 2,
-      :category_id => 3,
-      :status_id => 4,
-      :priority_id => 5
+                                title: 'Title',
+                                description: 'MyText',
+                                issuer_user_id: 1,
+                                assigned_to_id: 2,
+                                category_id: 3,
+                                status_id: 4,
+                                priority_id: 5
     ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Title/)
     expect(rendered).to match(/MyText/)

@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :user_type do
-    name "MyString"
+    name 'MyString'
   end
 end

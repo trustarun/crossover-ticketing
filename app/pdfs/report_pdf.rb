@@ -8,7 +8,7 @@ class ReportPdf < Prawn::Document
   end
 
   def header
-    #This inserts an image in the pdf file and sets the size of the image
+    # This inserts an image in the pdf file and sets the size of the image
     image "#{Rails.root}/app/assets/images/crossover-headr.png", width: 530, height: 50
   end
 
@@ -17,8 +17,8 @@ class ReportPdf < Prawn::Document
     y_position = cursor - 50
 
     # The bounding_box takes the x and y coordinates for positioning its content and some options to style it
-    bounding_box([0, y_position], :width => 530, :height => 50) do
-      text "List of tickets raised by user", size: 15, style: :bold
+    bounding_box([0, y_position], width: 530, height: 50) do
+      text 'List of tickets raised by user', size: 15, style: :bold
     end
   end
 
@@ -29,16 +29,15 @@ class ReportPdf < Prawn::Document
     table ticket_rows do
       row(0).font_style = :bold
       self.header = true
-      self.row_colors = ['DDDDDD', 'FFFFFF']
+      self.row_colors = %w(DDDDDD FFFFFF)
       self.column_widths = [50, 100, 130, 100, 70, 80]
     end
   end
 
   def ticket_rows
-    [['Id', 'Title', 'Description', 'Category', 'Priority', 'Status']] +
+    [%w(Id Title Description Category Priority Status)] +
       @tickets.map do |ticket|
-
-      [ticket.id, ticket.title, ticket.description, ticket.category.name, ticket.priority.name, ticket.status.name]
-    end
+        [ticket.id, ticket.title, ticket.description, ticket.category.name, ticket.priority.name, ticket.status.name]
+      end
   end
 end

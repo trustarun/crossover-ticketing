@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   rolify
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -21,20 +21,19 @@ class User < ActiveRecord::Base
   # user_type like employee, vendor etc is set explicitly by admin
   # For user registration through devise, it will be empty, set it here
   def set_user_type
-  	if self.user_type_id.blank?
-  		customer_type_id = UserType.find_by(code: "CUSTOMER").id
-  		self.user_type_id = customer_type_id
-  	end
+    if user_type_id.blank?
+      customer_type_id = UserType.find_by(code: 'CUSTOMER').id
+      self.user_type_id = customer_type_id
+    end
   end
 
   # customer tickets are based on issuer_user_id
   # employee tickets are based on assigned_to_id
   def my_tickets
-    if self.user_type_id == 1
-      Ticket.where(issuer_user_id: self.id)
+    if user_type_id == 1
+      Ticket.where(issuer_user_id: id)
     else
-      Ticket.where(assigned_to_id: self.id)
+      Ticket.where(assigned_to_id: id)
     end
   end
-
 end
