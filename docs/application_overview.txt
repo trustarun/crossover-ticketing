@@ -27,3 +27,20 @@ There is three role in the application:
     -> Admin can download Ticket Report in pdf format
 
 To know further detail like setup, test coverage etc , see documents in docs folder of  the application
+
+Application demo is available at : http://crossover-support.herokuapp.com/
+
+Use below credential:
+
+Admin:
+username: takeeasylookbusy@gmail.com
+password: happyarun
+
+Employee:
+username: kapil@gmail.com
+password: happyarun
+
+Customer:
+username: ajay@yahoo.co.in
+password: happyarun
+
