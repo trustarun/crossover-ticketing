@@ -24,6 +24,7 @@ Category.create([
 Role.create([
                   { name: 'manager' },
                   { name: 'technical_architect' },
+                  { name: 'support' },
                   { name: 'hr' },
                   { name: 'finanace' }
                 ])
@@ -62,10 +63,25 @@ admin_type_id = UserType.find_by(code: "ADMIN").id
 @employee1.add_role :manager
 
 @employee2 = User.create(
-                  { email: "ishu@gmail.com", first_name: "ishu", 
+                  { email: "priya@gmail.com", first_name: "priya", 
                     last_name: "yadav", mobile_no: "9569806453", user_type_id: 2,
                     password: "happyarun", password_confirmation: "happyarun"
                   }
                 )
 
 @employee2.add_role :hr
+
+@employee3 = User.create(
+                  { email: "priya@gmail.com", first_name: "priya", 
+                    last_name: "yadav", mobile_no: "9569806453", user_type_id: 2,
+                    password: "happyarun", password_confirmation: "happyarun"
+                  }
+                )
+
+@employee3.add_role :support
+
+Ticket.create([
+{title: "Install Ubuntu", description: "Need recent version of Ubuntu on my system", priority_id: 1, status_id: 1, category_id: 1, issuer_user_id: @user.id},
+{title: "Mouse not working", description: "Provide me new mouse", priority_id: 1, status_id: 1,category_id: 2, issuer_user_id: @user.id},
+{title: "Mobill bill not paid", description: "I could not able to pay my mobile bill online", priority_id: 1, status_id: 1, category_id: 3, issuer_user_id: @user.id}
+])

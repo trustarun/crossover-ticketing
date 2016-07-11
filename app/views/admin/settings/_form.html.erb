@@ -1,4 +1,4 @@
-<div class="row">
+,<div class="row">
   <div class="col-md-10 col-sm-10 col-md-offset-1">
     <%= form_for(User.new, url: create_user_admin_settings_path, method: 'post', remote: true, id: "create_new_user") do |f| %>
       <fieldset class="scheduler-border">
@@ -24,7 +24,7 @@
           <%= f.select :user_type_id, UserType.where.not(code: "CUSTOMER").collect {|user_type| [ user_type.name, user_type.id ] }, class: "form-control" , placeholder: "Mobile number"%>
         </div>
         <div class="actions">
-          <%= f.submit "Create", class: "btn-primary" %>
+          <%= f.submit "Create", class: "btn-primary", id: "submit_new_user" %>
         </div>
         <fieldset>
     <% end %>

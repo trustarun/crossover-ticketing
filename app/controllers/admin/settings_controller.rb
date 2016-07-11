@@ -1,4 +1,7 @@
 class Admin::SettingsController < ApplicationController
+    # make sure only admin can acess this controller
+	before_action :only_admin_access
+
 	# list all the admin settings
 	def index
 		
@@ -45,5 +48,12 @@ class Admin::SettingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :user_type_id, :mobile_no)
+    end
+
+    def only_admin_access
+    	unless current_user.user_type_id == 3
+	    	flash[:error] = "you are not authorized to access this action"
+	    	redirect_to root_path
+        end
     end
 end

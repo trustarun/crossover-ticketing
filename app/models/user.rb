@@ -27,4 +27,14 @@ class User < ActiveRecord::Base
   	end
   end
 
+  # customer tickets are based on issuer_user_id
+  # employee tickets are based on assigned_to_id
+  def my_tickets
+    if self.user_type_id == 1
+      Ticket.where(issuer_user_id: self.id)
+    else
+      Ticket.where(assigned_to_id: self.id)
+    end
+  end
+
 end

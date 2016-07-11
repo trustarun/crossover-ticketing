@@ -9,7 +9,7 @@ class TicketsController < ApplicationController
 
   def my_tickets
     @ticket = Ticket.new
-    @tickets = current_user.tickets
+    @tickets = current_user.my_tickets
   end
 
   # GET /tickets/1
@@ -33,7 +33,7 @@ class TicketsController < ApplicationController
     @ticket.issuer_user_id = current_user.id
     @ticket.save
     @ticket_saved = @ticket.errors.blank?
-    @tickets = current_user.tickets
+    @tickets = current_user.my_tickets
   end
 
   

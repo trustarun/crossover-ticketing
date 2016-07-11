@@ -16,4 +16,5 @@ class Ticket < ActiveRecord::Base
 		self.priority_id = priority_id if self.priority_id.blank?
 		self.category_id = category_id if self.category_id.blank?
 	end
+
 end
